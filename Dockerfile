@@ -1,9 +1,6 @@
-FROM alpine as node-build
+FROM node:12.16.1-alpine As node-build
 
-RUN apk add --update nodejs nodejs-npm bash git && \
-        rm -rf /var/cache/apk/*
-
-COPY . ./app
-WORKDIR /app
-RUN ls -lah
+WORKDIR /usr/src/app
+COPY package.json package-lock.json ./
 RUN npm install && npm install -g @angular/cli
+
